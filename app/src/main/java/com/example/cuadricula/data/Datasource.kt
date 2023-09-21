@@ -7,8 +7,7 @@ class Datasourse() {
 
     fun cargarCursos(): List<Topic> {
 
-        val topics = listOf(
-          return listOf<Topic>(Topic(R.string.architecture, 58, R.drawable.architecture),
+          return listOf(Topic(R.string.architecture, 58, R.drawable.architecture),
             Topic(R.string.crafts, 121, R.drawable.crafts),
             Topic(R.string.business, 78, R.drawable.business),
             Topic(R.string.culinary, 118, R.drawable.culinary),
@@ -22,7 +21,7 @@ class Datasourse() {
             Topic(R.string.painting, 172, R.drawable.painting),
             Topic(R.string.photography, 321, R.drawable.photography),
             Topic(R.string.tech, 118, R.drawable.tech)
-        ))
+        )
     }
 }
 
