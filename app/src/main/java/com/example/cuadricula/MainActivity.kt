@@ -27,6 +27,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterEnd
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -65,15 +67,15 @@ fun CursosApp(){
 fun CursosCuadricula(cursos: Topic ,modifier: Modifier= Modifier) {
 
     //elemento componioble card
-    Card {
+    Card(modifier=Modifier.height(80.dp).width(320.dp)) {
          Row{
              Column {
                  Image(
                      painter = painterResource(cursos.imageResourseId),
                      contentDescription = stringResource(cursos.stringResourceId),
                      modifier = Modifier
-                         .width(100.dp)
-                         .height(120.dp),
+                         .width(80.dp)
+                         .height(80.dp),
                      contentScale = ContentScale.Crop//determina como se debe  escalar y mostrar  la imagen
                  )
              }
@@ -97,8 +99,7 @@ fun textoCard( text: Int ,modifier: Modifier){
     Row {
             Text(
                 text = stringResource(id = text),
-                modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.headlineSmall
+                modifier = Modifier.padding(15.dp, 20.dp, 5.dp, 5.dp).height(20.dp).width(80.dp)
             )
 
     }
@@ -112,14 +113,13 @@ fun iconoCard(icono : Int , descripcion: Int , cantidad: Int ,modifier: Modifier
                 painter = painterResource(id = icono),
                 contentDescription = stringResource(id = descripcion),
                 modifier = Modifier
-                    .padding(20.dp, 10.dp, 15.dp, 20.dp)
+                    .padding(15.dp, 10.dp, 5.dp, 5.dp).height(30.dp).width(30.dp)
             )
         }
         Column {
             Text(
                 text = cantidad.toString(),
-                modifier = Modifier.padding(5.dp),
-                style = MaterialTheme.typography.headlineSmall
+                modifier = Modifier.padding(5.dp, 10.dp, 5.dp, 5.dp).height(30.dp).width(30.dp)
 
             )
         }
@@ -132,14 +132,16 @@ fun iconoCard(icono : Int , descripcion: Int , cantidad: Int ,modifier: Modifier
 @Preview
 @Composable
 fun CursoCuadriculaPreview() {
-        CursosCuadricula(Topic(R.string.architecture,58,R.drawable.architecture))
-
+        //CursosCuadricula(Topic(R.string.architecture,58,R.drawable.architecture))
+    CursosLista(listaCursos= Datasourse().cargarCursos(), modifier = Modifier)
 }
 
 @Composable
 fun CursosLista(listaCursos : List<Topic> ,modifier :Modifier=Modifier) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 128.dp)
+        columns = GridCells.Fixed(2),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
 
         items(listaCursos) { topic ->
